@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  border: 1px solid red;
+}
+
+@layer components {
+  .align-element {
+    @apply mx-auto max-w-6xl px-8;
+  }
+  @media screen and (min-width: 768px) {
+    .hero {
+      background-color: #f4d9d8;
+      /* background-color: #fee0e0; */
+    }
+    .hero img {
+      box-shadow: none;
+    }
+  }
+}
