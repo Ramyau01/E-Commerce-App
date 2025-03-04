@@ -1,9 +1,14 @@
+import { useDrawerContext } from "../pages/AppContext";
+
 export const CategoryAccordion = ({
   label,
   categorynames,
   handleCheckboxChange,
   onAccordionClick,
 }) => {
+  function handleChange(id) {
+    handleCheckboxChange(id, label);
+  }
   return (
     <details
       className="collapse collapse-arrow bg-base-200 w-full "
@@ -21,8 +26,10 @@ export const CategoryAccordion = ({
                   <input
                     type="checkbox"
                     checked={category.checked}
+                    name={label === "Brand" ? "company" : "category"}
+                    value={name}
                     className="checkbox checkbox-success"
-                    onChange={() => handleCheckboxChange(id)}
+                    onChange={() => handleChange(id)}
                     // onChange={() => handleCheckboxChange(id)}
                   />
                 </div>

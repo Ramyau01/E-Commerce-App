@@ -4,7 +4,7 @@ import { CardBody } from "./CardBody";
 export const ProductList = () => {
   const { strapiData, FakestoreData } = useLoaderData();
   const strapiProducts = strapiData?.products;
-  const fakestoreProducts = FakestoreData?.fakeproducts?.data;
+  const fakestoreProducts = FakestoreData?.fakeproducts?.data || [];
 
   return (
     <div className="mb-12 mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

@@ -22,5 +22,11 @@ const DrawerContext = createContext();
 export const useDrawerContext = () => useContext(DrawerContext);
 
 export const DrawerContextProvider = ({ children }) => {
-  return <DrawerContext.Provider>{children}</DrawerContext.Provider>;
+  const [selectedCategory, setselectedCategory] = useState("");
+
+  return (
+    <DrawerContext.Provider value={{ selectedCategory, setselectedCategory }}>
+      {children}
+    </DrawerContext.Provider>
+  );
 };

@@ -27,3 +27,5 @@ export { CategoryAccordion } from "./CategoryAccordion";
 export { FormRange } from "./FormRange";
 export { AccordionForm } from "./AccordionForm";
 export { Loading } from "./Loading";
+export { DrawerForm } from "./DrawerForm";
+export { PaginationForm } from "./PaginationForm";

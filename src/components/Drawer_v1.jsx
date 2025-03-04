@@ -4,7 +4,10 @@ import { SubmitButton } from "./SubmitButton";
 import { SortItems } from "./SortItems";
 import { FilterItems } from "./FilterItems";
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
+import { Form } from "react-router-dom";
+import { FilterForm } from "./FilterForm";
+import { SortForm } from "./SortForm";
 export const Drawer = ({
   icon,
   text,
@@ -12,16 +15,24 @@ export const Drawer = ({
   handleChange,
   drawerid,
   isChecked,
+  style,
 }) => {
   const { isSideBarOpen, openSideBar, closeSideBar } = useGlobalContext();
-  // const isChecked = selectedDrawer === text;
+
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  console.log("drawer loaded", isChecked);
+  // const [category, setCategory] = useState("");
+  // const [brand, setBrand] = useState("");
+  // const [price, setPrice] = useState("");
   function handleClick() {
     setIsDrawerOpen(!isDrawerOpen);
     handleChange(null);
 
     closeSideBar();
+  }
+
+  function handleFilterFormSubmit(e) {
+    e.preventDefault();
+    console.log("form submitted");
   }
   return (
     <div className="drawer drawer-end ">
@@ -33,15 +44,11 @@ export const Drawer = ({
         className="drawer-toggle"
       />
       <div className="drawer-content ">
-        <label
-          htmlFor={drawerid}
-          onClick={openSideBar}
-          className="drawer-button btn btn-primary px-4 btn-sm rounded-full flex gap-4 "
-        >
+        <label htmlFor={drawerid} onClick={openSideBar} className={style}>
           <div>
             <img src={icon}></img>
           </div>
-          <div> {text}</div>
+          <div className="hidden md:flex"> {text}</div>
         </label>
       </div>
 
@@ -50,42 +57,52 @@ export const Drawer = ({
           htmlFor={drawerid}
           aria-label="close sidebar"
           className="drawer-overlay"
-          // onClick={handleClick}
+          onClick={closeSideBar}
         ></label>
-        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 relative">
-          {/* Sidebar content here */}
-          <li>
-            <div className="flex justify-between">
-              <div>
-                <h2 className="text-2xl font-semibold">{text}</h2>
-              </div>
-              <div>
-                <button
-                  className="btn btn-circle text-xl"
-                  onClick={handleClick}
-                >
-                  {/* <FaTimes></FaTimes> */} X
-                </button>
-              </div>
-            </div>
-          </li>
-          {/* sort list  */}
-          {/* {drawerid === "sidebar-sort" ? (
-            <SortItems></SortItems>
-          ) : (
-            <FilterItems></FilterItems>
-          )} */}
-          <li>list item</li>
 
-          <div className="btm-nav flex justify-between border-none">
-            <div>
-              <SubmitButton text="Cancel" style="btn-sm px-8 "></SubmitButton>
+        <Form
+          onSubmit={handleFilterFormSubmit}
+          className="min-h-full bg-base-200 "
+        >
+          <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 relative">
+            {/* Sidebar content here */}
+            <li>
+              <div className="flex justify-between">
+                <div>
+                  <h2 className="text-2xl font-semibold">{text}</h2>
+                </div>
+                <div>
+                  <button
+                    className="btn btn-circle text-xl"
+                    onClick={handleClick}
+                  >
+                    <FaTimes></FaTimes>
+                  </button>
+                </div>
+              </div>
+            </li>
+            {/* sort list  */}
+            {drawerid === "sidebar-sort" ? (
+              <SortItems></SortItems>
+            ) : (
+              <FilterItems></FilterItems>
+            )}
+
+            <div className="btm-nav flex justify-between border-none">
+              <div>
+                <Link to="/products">
+                  <SubmitButton
+                    text="Cancel"
+                    style="btn-sm px-8 "
+                  ></SubmitButton>
+                </Link>
+              </div>
+              <div>
+                <SubmitButton text="Apply" style="btn-sm px-8 "></SubmitButton>
+              </div>
             </div>
-            <div>
-              <SubmitButton text="Apply" style="btn-sm px-8 "></SubmitButton>
-            </div>
-          </div>
-        </ul>
+          </ul>
+        </Form>
       </div>
     </div>
   );

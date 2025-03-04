@@ -42,9 +42,15 @@ export const Filter = () => {
       <div className="mt-4 font-bold text-lg">
         <div className="flex justify-between">
           <div>
-            <h4>
-              {totalProducts} result{totalProducts > 1 && "s"}
-            </h4>
+            {totalProducts === 0 ? (
+              <h5 className="text-2xl mt-16">
+                Sorry, no products matched your search...
+              </h5>
+            ) : (
+              <h4>
+                {totalProducts} result{totalProducts > 1 && "s"}
+              </h4>
+            )}
           </div>
           <div className="flex gap-2 md:hidden">
             <Drawer
