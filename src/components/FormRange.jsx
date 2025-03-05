@@ -12,6 +12,7 @@ export const FormRange = ({ label }) => {
       </label>
       <input
         type="range"
+        name="price"
         min={0}
         max={maxPrice}
         value={selectedPrice}
