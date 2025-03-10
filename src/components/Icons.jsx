@@ -5,7 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { Theme } from "./Theme";
 // import PropTypes from "prop-types";
 import { useGlobalContext } from "../pages/AppContext";
+import { useSelector } from "react-redux";
 export const Icons = () => {
+  const numItemsInCart = useSelector((state) => state.cartState.numItemsInCart);
+  const numItemsInWish = useSelector(
+    (state) => state.wishlistState.numItemsInWishList
+  );
   const { isSideBarOpen } = useGlobalContext();
   const navigate = useNavigate();
   function UserIconClick() {
@@ -25,33 +30,26 @@ export const Icons = () => {
         onClick={() => navigate("/wishlist")}
         className="btn btn-ghost btn-circle text-xl"
       >
-        <FaHeart></FaHeart>
+        <div className="indicator">
+          <FaHeart></FaHeart>
+          <span className="badge badge-xs badge-primary indicator-item">
+            {numItemsInWish}
+          </span>
+        </div>
       </button>
       <button
         onClick={() => navigate("/cart")}
         className="btn btn-ghost btn-circle text-xl"
       >
-        {/* <div className={`indicator ${isSideBarOpen ? "z-0" : "z-1"}`}>
-          <FaCartShopping></FaCartShopping>
-          <span className="badge badge-xs badge-primary indicator-item"></span>
-        </div> */}
         {!isSideBarOpen && (
           <div className="indicator">
             <FaCartShopping></FaCartShopping>
-            <span className="badge badge-xs badge-primary indicator-item"></span>
+            <span className="badge badge-xs badge-primary indicator-item">
+              {numItemsInCart}
+            </span>
           </div>
         )}
       </button>
     </>
   );
 };
-
-// <button className="btn btn-ghost btn-circle text-xl">
-//     <FaRegUserCircle></FaRegUserCircle>
-//   </button>
-//   <button className="btn btn-ghost btn-circle text-xl">
-//     <FaHeart></FaHeart>
-//   </button>
-//   <button className="btn btn-ghost btn-circle text-xl">
-//     <FaCartShopping></FaCartShopping>
-//   </button>

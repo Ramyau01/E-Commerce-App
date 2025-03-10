@@ -1,11 +1,6 @@
 import { useGlobalContext } from "../pages/AppContext";
-import { FaTimes } from "react-icons/fa";
-import { SubmitButton } from "./SubmitButton";
-import { SortItems } from "./SortItems";
-import { FilterItems } from "./FilterItems";
+
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Form } from "react-router-dom";
 
 import { DrawerForm } from "./DrawerForm";
 export const Drawer = ({
@@ -20,9 +15,7 @@ export const Drawer = ({
   const { isSideBarOpen, openSideBar, closeSideBar } = useGlobalContext();
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  // const [category, setCategory] = useState("");
-  // const [brand, setBrand] = useState("");
-  // const [price, setPrice] = useState("");
+
   function handleClick() {
     setIsDrawerOpen(!isDrawerOpen);
     handleChange(null);

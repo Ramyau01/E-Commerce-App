@@ -1,5 +1,5 @@
 import { useState } from "react";
-import searchIcon from "../assets/search-icon.svg";
+
 import { Form, useNavigate } from "react-router-dom";
 export const Input = () => {
   const [searchTerm, setSearchTerm] = useState("");

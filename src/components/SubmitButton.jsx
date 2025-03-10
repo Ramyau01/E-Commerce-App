@@ -3,10 +3,11 @@ import { useNavigation } from "react-router-dom";
 export const SubmitButton = ({ text, style }) => {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
+
   return (
     <button
       type="submit"
-      className={`btn px-4 rounded-full btn-primary min-h-8 ${style}`}
+      className={`btn px-4 rounded-full btn-primary btn-sm ${style}`}
       disabled={isSubmitting}
     >
       {isSubmitting ? (

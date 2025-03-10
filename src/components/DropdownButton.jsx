@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-export const DropdownButton = ({ text }) => {
-  const [qty, setQty] = useState(1);
+export const DropdownButton = ({ text, qty, setQty }) => {
+  // const [qty, setQty] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
   function handleSelect(num) {
     setQty(num);

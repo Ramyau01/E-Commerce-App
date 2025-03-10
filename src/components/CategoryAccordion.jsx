@@ -1,4 +1,4 @@
-import { useDrawerContext } from "../pages/AppContext";
+// import { useDrawerContext } from "../pages/AppContext";
 
 export const CategoryAccordion = ({
   label,

@@ -1,9 +1,9 @@
 import { Link, useLoaderData } from "react-router-dom";
 import { formatPrice } from "../utils";
 import { SubmitButton } from "./SubmitButton";
+
 export const ProductsGrid = () => {
   const { products } = useLoaderData();
-  console.log(products);
 
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3">
@@ -26,9 +26,13 @@ export const ProductsGrid = () => {
             <div className="flex flex-col items-center text-center  p-0">
               <h2 className="text-lg leading-8 capitalize">{title}</h2>
               <p className="text-black font-semibold">{dollarAmount}</p>
-              <div className="my-2">
-                <SubmitButton text="Add to cart"></SubmitButton>
-              </div>
+              {/* <div className="my-2">
+                <SubmitButton
+                  text="Add to cart"
+                  style="px-8"
+                 
+                ></SubmitButton> */}
+              {/* </div> */}
             </div>
           </Link>
         );

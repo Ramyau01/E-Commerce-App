@@ -14,7 +14,7 @@ export const HomeLayout = () => {
       <section>
         {isPageLoading ? <Loading></Loading> : <Outlet></Outlet>}
       </section>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </div>
   );
 };

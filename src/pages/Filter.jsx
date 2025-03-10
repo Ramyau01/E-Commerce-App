@@ -77,8 +77,3 @@ export const Filter = () => {
     </div>
   );
 };
-
-//  const handleChange = (text) => {
-//    // setSelectedDrawer((prev) => (prev === text ? null : text));
-
-//  };

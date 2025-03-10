@@ -5,6 +5,7 @@ import { NavLinks } from "./NavLinks";
 // import { NavLink } from "react-router-dom";
 import { Logo } from "./Logo";
 import { Icons } from "./Icons";
+
 export const Navbar = () => {
   return (
     <nav>

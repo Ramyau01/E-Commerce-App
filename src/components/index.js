@@ -29,3 +29,10 @@ export { AccordionForm } from "./AccordionForm";
 export { Loading } from "./Loading";
 export { DrawerForm } from "./DrawerForm";
 export { PaginationForm } from "./PaginationForm";
+
+export { CartItems } from "./CartItems";
+export { CartItemsList } from "./CartItemsList";
+export { CartTotals } from "./CartTotals";
+export { SectionTitle } from "./SectionTitle";
+export { FavList } from "./FavList";
+export { FavItem } from "./FavItem";

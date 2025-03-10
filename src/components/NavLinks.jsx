@@ -1,5 +1,6 @@
 import { links } from "../assets/data";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 export const NavLinks = () => {
   return (
     <>
@@ -7,12 +8,12 @@ export const NavLinks = () => {
         const { id, text, url } = link;
         return (
           <li key={id}>
-            <NavLink
-              className="capitalize font-semibold text-info-content text-sm md:text-base lg:text-lg"
+            <Link
               to={url}
+              className="capitalize font-semibold text-primary-content text-sm md:text-base lg:text-lg "
             >
               {text}
-            </NavLink>
+            </Link>
           </li>
         );
       })}
