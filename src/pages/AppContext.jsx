@@ -17,16 +17,3 @@ export const AppContextProvider = ({ children }) => {
     </Appcontext.Provider>
   );
 };
-
-// const DrawerContext = createContext();
-// export const useDrawerContext = () => useContext(DrawerContext);
-
-// export const DrawerContextProvider = ({ children }) => {
-//   const [selectedCategory, setselectedCategory] = useState("");
-
-//   return (
-//     <DrawerContext.Provider value={{ selectedCategory, setselectedCategory }}>
-//       {children}
-//     </DrawerContext.Provider>
-//   );
-// };

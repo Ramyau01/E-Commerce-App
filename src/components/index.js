@@ -14,7 +14,7 @@ export { Categories } from "./Categories";
 export { ProductTitle } from "./ProductTitle";
 export { DropdownButton } from "./DropdownButton";
 export { Pagination } from "./Pagination";
-
+export { Icons } from "./Icons";
 export { ProductsContainer } from "./ProductsContainer";
 export { ProductList } from "./ProductList";
 export { ButtonWithIcon } from "./ButtonWithIcon";
@@ -29,10 +29,12 @@ export { AccordionForm } from "./AccordionForm";
 export { Loading } from "./Loading";
 export { DrawerForm } from "./DrawerForm";
 export { PaginationForm } from "./PaginationForm";
-
+export { CardCarousel } from "./CardCarousel";
 export { CartItems } from "./CartItems";
 export { CartItemsList } from "./CartItemsList";
 export { CartTotals } from "./CartTotals";
 export { SectionTitle } from "./SectionTitle";
 export { FavList } from "./FavList";
 export { FavItem } from "./FavItem";
+export { NavLinks } from "./NavLinks";
+export { ProductsGrid } from "./ProductsGrid";

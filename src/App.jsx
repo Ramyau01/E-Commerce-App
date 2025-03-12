@@ -1,3 +1,6 @@
+// import { ToastContainer, toast } from "react-toastify";
+
+//import "react-toastify/dist/ReactToastify.css";
 import {
   Cart,
   Wishlist,
@@ -13,9 +16,11 @@ import {
   SinglePageError,
 } from "./pages";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import { loader as LandingLoader } from "./pages/Landing";
 import { SingleProductLoader, CombinedLoader } from "./utils/Loaders";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -86,7 +91,8 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <>
-      <RouterProvider router={router}></RouterProvider>;
+      <RouterProvider router={router}></RouterProvider>
+      <ToastContainer position="top-center" autoClose={2000} />
     </>
   );
 };

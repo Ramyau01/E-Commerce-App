@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 const defaultState = {
   wishListItems: [],
   numItemsInWishList: 0,
@@ -16,7 +17,7 @@ const wishListSlice = createSlice({
 
       state.wishListItems.push(product);
       localStorage.setItem("favorites", JSON.stringify(state));
-      console.log(state.wishListItems.length);
+      toast.success("item added to Wishlist");
     },
     removeItemFromWishlist: (state, action) => {
       const { id } = action.payload;
