@@ -1,9 +1,11 @@
 import { strapiFetch } from ".";
 import { fakestoreFetch } from ".";
+import { toast } from "react-toastify";
+import { redirect } from "react-router-dom";
 
 const FakeStoreCategoryLoader = async () => {
   const response = await fakestoreFetch("/products/categories");
-  console.log(response.data);
+
   return { category: response.data };
 };
 
@@ -46,29 +48,24 @@ const AllStrapiProductsLoader = async () => {
 
 const AllFakestoreProductsLoader = async () => {
   const response = await fakestoreFetch("/products");
-  console.log(response.data);
+
   const fakestoreData = { data: [...response.data], company: "Myntra" };
   return { fakeproducts: fakestoreData };
 };
 
 const StrapiCategoriesItemLoader = async ({ params }) => {
   const response = await strapiFetch("/products", { params });
-  console.log(response.data.data);
+
   const meta = response.data.meta;
   return { products: response.data.data, meta };
 };
 
 const FakestoreCategoriesItemLoader = async ({ params }) => {
-  // const response = await fakestoreFetch("/products");
-  // console.log(response.data);
-  // const fakestoreData = { data: [...response.data], company: "Myntra" };
-  // return { fakeproducts: fakestoreData };
-
   try {
     const response = await fakestoreFetch(
       `/products/category/${params.category}`
     );
-    console.log(response.data.data);
+
     const fakestoreData = { data: [...response.data], company: "Myntra" };
     // const products = response.data.data || [];
 
@@ -94,30 +91,16 @@ export const CombinedLoader = async ({ request }) => {
 
     const FakestoreData = await FakestoreCategoriesItemLoader({ params });
     const FakeStoreCategories = await FakeStoreCategoryLoader();
-    console.log(strapiData);
-    console.log(FakestoreData);
-    console.log(FakeStoreCategories);
+
     return { strapiData, FakestoreData, FakeStoreCategories };
   }
 };
 
-// https://fakestoreapi.com/products/category/jewelery
-
-// const AllStrapiProductsLoader = async ({ request }) => {
-//   const params = Object.fromEntries([
-//     ...new URL(request.url).searchParams.entries(),
-//   ]);
-// const response = await strapiFetch("/products", { params });
-//  const meta = response.data.meta;
-// return { products: response.data.data, meta };
-// };
-
-// const AllFakestoreProductsLoader = async ({ request }) => {
-//   const params = Object.fromEntries([
-//     ...new URL(request.url).searchParams.entries(),
-//   ]);
-// const response = await fakestoreFetch("/products", { params });
-//   console.log(response.data);
-//   const fakestoreData = { data: [...response.data], company: "Myntra" };
-// return { fakeproducts: fakestoreData };
-// };
+export const CheckoutLoader = (store) => () => {
+  const user = store.getState().userState.user;
+  if (!user) {
+    toast.warn("Please login to checkout");
+    return redirect("/login");
+  }
+  return null;
+};

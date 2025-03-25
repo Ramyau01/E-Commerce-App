@@ -5,6 +5,10 @@ export const CartTotals = () => {
   const { cartTotal, shipping, tax, orderTotal } = useSelector(
     (state) => state.cartState
   );
+  // console.log(cartTotal);
+  // console.log(shipping);
+  // console.log(tax);
+  // console.log(orderTotal);
 
   return (
     <div className="card bg-base-300">

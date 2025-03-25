@@ -1,6 +1,11 @@
 import { editItem, removeItem } from "../features/cart/cartSlice";
 import { addItemToWishlist } from "../features/wishlist/wishlistSlice";
-import { generateAmountOptions, formatPrice } from "../utils";
+import {
+  generateAmountOptions,
+  formatPrice,
+  formatFakeStorePrice,
+  formatFSCartPrice,
+} from "../utils";
 import { useDispatch } from "react-redux";
 import { FaTimes } from "react-icons/fa";
 import { DropdownButton } from "../components";
@@ -22,7 +27,7 @@ export const CartItems = ({ cartItem }) => {
   return (
     <article
       key={cartID}
-      className="mb-4  flex p-4 gap-12 relative shadow-lg rounded-md"
+      className="mb-4  flex p-4 gap-4 md:gap-12 relative shadow-lg rounded-md"
     >
       <div>
         {/* IMAGE */}
@@ -35,7 +40,7 @@ export const CartItems = ({ cartItem }) => {
       <div>
         {/* PRICE */}
         <p className="font-bold sm:ml-auto text-xl leading-8">
-          {formatPrice(price)}
+          {company === "Myntra" ? formatFSCartPrice(price) : formatPrice(price)}
         </p>
         {/* TITLE */}
         <h3 className="capitalize font-medium text-lg text-primary">{title}</h3>

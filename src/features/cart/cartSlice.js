@@ -39,7 +39,6 @@ const cartSlice = createSlice({
       state.tax = 0;
       state.orderTotal = state.shipping;
       localStorage.setItem("cart", JSON.stringify(state));
-      return state;
     },
     removeItem: (state, action) => {
       const { cartID } = action.payload;
@@ -68,6 +67,8 @@ const cartSlice = createSlice({
       }
       state.tax = 0.1 * state.cartTotal;
       state.orderTotal = state.cartTotal + state.shipping + state.tax;
+      console.log(state.orderTotal);
+
       localStorage.setItem("cart", JSON.stringify(state));
     },
   },

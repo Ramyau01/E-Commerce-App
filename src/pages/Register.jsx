@@ -28,27 +28,20 @@ export const Register = () => {
       </div>
 
       <Form
-        method="post"
+        method="POST"
         className=" bg-base-200 shadow-2xl w-5/6 max-w-96 flex flex-col  p-8 mt-4 rounded-md "
       >
         <FormInput
           inputType="text"
           label="User Name"
           name="username"
-          defaultValue="Tom"
         ></FormInput>
 
-        <FormInput
-          inputType="email"
-          label="Email"
-          name="email"
-          defaultValue="tom@gmail.com"
-        ></FormInput>
+        <FormInput inputType="email" label="Email" name="email"></FormInput>
         <FormInput
           inputType="password"
           label="Create a password"
           name="password"
-          defaultValue="Tom@1234"
         ></FormInput>
         <div className="flex gap-4 my-2">
           <input type="checkbox" name="" id="" />

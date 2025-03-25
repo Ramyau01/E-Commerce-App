@@ -17,13 +17,11 @@ export const Login = () => {
             inputType="email"
             label="Email"
             name="identifier"
-            defaultValue="ram@gmail.com"
           ></FormInput>
           <FormInput
             inputType="password"
             label="Password"
             name="password"
-            defaultValue="Dashing@123"
           ></FormInput>
           <div className="mt-4">
             <SubmitButton
@@ -31,10 +29,6 @@ export const Login = () => {
               style="btn-primary btn-block text-lg font-medium"
             ></SubmitButton>
 
-            <SubmitButton
-              text="  Guest User"
-              style=" btn-block mt-4 text-lg font-medium"
-            ></SubmitButton>
             <p className="mt-4">
               Not a member yet ?
               <Link

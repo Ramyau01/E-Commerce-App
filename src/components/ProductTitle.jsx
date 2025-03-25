@@ -4,7 +4,7 @@ export const ProductTitle = ({ company, title }) => {
       <h2 className="font-bold text-3xl  capitalize leading-4 text-primary ">
         {company}
       </h2>
-      <p className="capitalize text-xl font-normal text-primary py-3 ">
+      <p className="capitalize text-xl font-normal text-primary py-4 ">
         {title}
       </p>
     </div>

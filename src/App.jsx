@@ -18,9 +18,15 @@ import {
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { loader as LandingLoader } from "./pages/Landing";
-import { SingleProductLoader, CombinedLoader } from "./utils/Loaders";
+import {
+  SingleProductLoader,
+  CombinedLoader,
+  CheckoutLoader,
+} from "./utils/Loaders";
+import { registerAction, LoginAction, CheckoutAction } from "./utils/actions";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { store } from "./store";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -47,6 +53,8 @@ const router = createBrowserRouter([
         path: "checkout",
         element: <Checkout></Checkout>,
         errorElement: <SinglePageError></SinglePageError>,
+        loader: CheckoutLoader(store),
+        action: CheckoutAction(store),
       },
       {
         path: "orders",
@@ -73,19 +81,17 @@ const router = createBrowserRouter([
     ],
   },
 
-  // {
-  //   path: "pageError",
-  //   element: <SinglePageError></SinglePageError>,
-  // },
   {
     path: "login",
     element: <Login></Login>,
     errorElement: <Error></Error>,
+    action: LoginAction(store),
   },
   {
     path: "register",
     element: <Register></Register>,
     errorElement: <Error></Error>,
+    action: registerAction,
   },
 ]);
 const App = () => {

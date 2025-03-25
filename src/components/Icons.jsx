@@ -54,6 +54,14 @@ export const Icons = () => {
                 </p>
               </li>
               <li>
+                <Link
+                  to="/orders"
+                  className="link link-hover font-semibold justify-start"
+                >
+                  Orders
+                </Link>
+              </li>
+              <li>
                 <a
                   className="btn btn-link btn-sm justify-start"
                   onClick={handleLogout}
@@ -66,12 +74,21 @@ export const Icons = () => {
             <>
               <li>
                 <p className="text-md ">
-                  Existing User? <a className="font-semibold">Login</a>
+                  Existing User?{" "}
+                  <Link to="/login" className="link link-hover font-semibold">
+                    Login
+                  </Link>
                 </p>
               </li>
               <li>
                 <p className="text-md ">
-                  New User ? <a className="font-semibold">Register</a>
+                  New User ?{" "}
+                  <Link
+                    to="/register"
+                    className="link link-hover font-semibold"
+                  >
+                    Register
+                  </Link>
                 </p>
               </li>
             </>

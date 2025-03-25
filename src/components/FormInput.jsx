@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const FormInput = ({ inputType, label, name, defaultValue }) => {
   const [showPassword, setShowPassword] = useState(false);
-  console.log(typeof inputType);
+
   return (
     <label className="form-control ">
       <div className="label">
@@ -14,6 +14,7 @@ export const FormInput = ({ inputType, label, name, defaultValue }) => {
           <label className="input input-bordered flex items-center gap-2 h-10 text-md">
             <input
               type={showPassword ? "text" : "password"}
+              name={name}
               defaultValue={defaultValue}
               className="grow"
             />

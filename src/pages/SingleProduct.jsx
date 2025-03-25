@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { formatPrice } from "../utils";
+import { formatFakeStorePrice, formatPrice } from "../utils";
 import { Link } from "react-router-dom";
 
 import { ProductTitle, DropdownButton } from "../components";
@@ -28,7 +28,7 @@ export const SingleProduct = () => {
     productID: product.id,
     image,
     title,
-    price,
+    price: company === "Myntra" ? price * 100 : price,
     qty,
     productColor,
     company,
@@ -42,8 +42,23 @@ export const SingleProduct = () => {
     productColor,
     company,
   };
+  let dollarAmount = "";
   const dispatch = useDispatch();
-  const dollarAmount = formatPrice(price);
+
+  // if (company !== "Myntra") {
+  //   dollarAmount = formatFakeStorePrice(price);
+  // } else {
+  //   dollarAmount = new Intl.NumberFormat("en-US", {
+  //     style: "currency",
+  //     currency: "USD",
+  //   }).format(price);
+  // }
+  if (company === "Myntra") {
+    dollarAmount = formatFakeStorePrice(price);
+  } else {
+    dollarAmount = formatPrice(price);
+  }
+  console.log(dollarAmount);
   const addtoCart = () => {
     dispatch(addItem({ product: cartProduct }));
   };
@@ -71,10 +86,10 @@ export const SingleProduct = () => {
             <div className="md:hidden">
               <ProductTitle title={title} company={company}></ProductTitle>
             </div>
-            <div className="h-80 sm:h-full">
+            <div className="h-60 sm:h-full">
               <img
                 src={image}
-                className="h-full w-full sm:h-full sm:w-full  max-w-md  object-cover rounded border-4"
+                className="h-full w-full max-w-md  object-contain rounded border-4"
                 style={{ borderColor: productColor || "transparent" }}
               ></img>
             </div>
@@ -86,7 +101,7 @@ export const SingleProduct = () => {
               </div>
             </div>
             <div>
-              <p className="font-bold text-xl  capitalize leading-4 mt-3">
+              <p className="font-bold text-xl  capitalize leading-4 mt-4">
                 {dollarAmount}
               </p>
               <p className=" text-md  capitalize leading-6 mt-6">

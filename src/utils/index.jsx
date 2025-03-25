@@ -20,10 +20,24 @@ export const formatPrice = (price) => {
 };
 
 export const formatFakeStorePrice = (price) => {
+  console.log("Myntra");
+
   const dollarAmount = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
-  }).format(price);
+  }).format(price.toFixed(2));
+  console.log(dollarAmount);
+
+  return dollarAmount;
+};
+export const formatFSCartPrice = (price) => {
+  console.log("Myntra");
+
+  const dollarAmount = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format((price / 100).toFixed(2));
+  console.log(dollarAmount);
 
   return dollarAmount;
 };
