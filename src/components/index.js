@@ -40,3 +40,5 @@ export { NavLinks } from "./NavLinks";
 export { ProductsGrid } from "./ProductsGrid";
 export { EmptyContainer } from "./EmptyContainer";
 export { CheckoutForm } from "./CheckoutForm";
+export { OrderList } from "./OrderList";
+export { OrderItem } from "./OrderItem";

@@ -1,3 +1,8 @@
+import { OrderList } from "../components/OrderList";
 export const Orders = () => {
-  return <div>Orders</div>;
+  return (
+    <div className="flex justify-center">
+      <OrderList></OrderList>
+    </div>
+  );
 };

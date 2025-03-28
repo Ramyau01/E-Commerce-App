@@ -2,6 +2,7 @@ import { strapiFetch } from ".";
 import { fakestoreFetch } from ".";
 import { toast } from "react-toastify";
 import { redirect } from "react-router-dom";
+import { clearFKOrders } from "../features/cart/cartSlice";
 
 const FakeStoreCategoryLoader = async () => {
   const response = await fakestoreFetch("/products/categories");
@@ -104,3 +105,37 @@ export const CheckoutLoader = (store) => () => {
   }
   return null;
 };
+export const OrdersLoader =
+  (store) =>
+  async ({ request }) => {
+    const user = store.getState().userState.user;
+    if (!user) {
+      toast.warn("Please login to view Orders");
+      return redirect("/login");
+    }
+
+    // const myntraItems = store.getState().cartState.myntraProducts;
+
+    // store.dispatch(clearFKOrders());
+
+    try {
+      const response = await strapiFetch.get("/orders", {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      console.log(response.data.data);
+      return { orders: response.data.data, meta: response.data.meta };
+    } catch (error) {
+      console.log(error);
+      const errorMessage =
+        error?.response?.data?.error?.message ||
+        "there was an error accessing your orders";
+
+      toast.error(errorMessage);
+      if (error?.response?.status === 401 || error?.response?.status === 403)
+        return redirect("/login");
+
+      return null;
+    }
+  };

@@ -22,6 +22,7 @@ import {
   SingleProductLoader,
   CombinedLoader,
   CheckoutLoader,
+  OrdersLoader,
 } from "./utils/Loaders";
 import { registerAction, LoginAction, CheckoutAction } from "./utils/actions";
 import { ToastContainer } from "react-toastify";
@@ -60,6 +61,7 @@ const router = createBrowserRouter([
         path: "orders",
         element: <Orders></Orders>,
         errorElement: <SinglePageError></SinglePageError>,
+        loader: OrdersLoader(store),
       },
       {
         path: "products",

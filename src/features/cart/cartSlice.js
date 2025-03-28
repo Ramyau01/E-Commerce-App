@@ -7,17 +7,27 @@ const defaultState = {
   shipping: 500,
   tax: 0,
   orderTotal: 0,
+  myntraProducts: [],
 };
+// const getCartFromLocalStorage = () => {
+//   return JSON.parse(localStorage.getItem("cart")) || defaultState;
+// };
 const getCartFromLocalStorage = () => {
-  return JSON.parse(localStorage.getItem("cart")) || defaultState;
+  const storedCart = JSON.parse(localStorage.getItem("cart")) || {};
+  return {
+    ...defaultState,
+    ...storedCart,
+    myntraProducts: storedCart.myntraProducts || [],
+  };
 };
+
 const cartSlice = createSlice({
   name: "cart",
   initialState: getCartFromLocalStorage(),
   reducers: {
     addItem: (state, action) => {
       const { product } = action.payload;
-
+      console.log(product);
       const item = state.cartItems.find((i) => i.cartID === product.cartID);
 
       if (item) {
@@ -33,11 +43,13 @@ const cartSlice = createSlice({
       toast.success("item added to cart");
     },
     clearCart: (state) => {
+      console.log("cleared");
       state.cartItems = [];
       state.numItemsInCart = 0;
       state.cartTotal = 0;
       state.tax = 0;
       state.orderTotal = state.shipping;
+      // state.myntraProducts = [];
       localStorage.setItem("cart", JSON.stringify(state));
     },
     removeItem: (state, action) => {
@@ -71,9 +83,29 @@ const cartSlice = createSlice({
 
       localStorage.setItem("cart", JSON.stringify(state));
     },
+    addFKProducts: (state, action) => {
+      const { product } = action.payload;
+
+      state.myntraProducts = [...state.myntraProducts, product];
+      console.log("here", state.myntraProducts);
+    },
+    clearFKOrders: (state) => {
+      console.log("cleared orders");
+      state.myntraProducts = [];
+
+      // state.myntraProducts = [];
+      localStorage.setItem("cart", JSON.stringify(state));
+    },
   },
 });
 
 //Action creators
-export const { addItem, clearCart, removeItem, editItem } = cartSlice.actions;
+export const {
+  addItem,
+  clearCart,
+  removeItem,
+  editItem,
+  addFKProducts,
+  clearFKOrders,
+} = cartSlice.actions;
 export default cartSlice.reducer;

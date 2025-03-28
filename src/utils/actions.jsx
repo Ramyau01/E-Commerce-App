@@ -1,11 +1,12 @@
 import { redirect } from "react-router-dom";
 import { strapiFetch } from ".";
-import { fakestoreFetch } from ".";
+
 import { toast } from "react-toastify";
 import { loginUser } from "../features/user/userSlice";
-import { clearCart } from "../features/cart/cartSlice";
+import { clearCart, addFKProducts } from "../features/cart/cartSlice";
 
 import { formatPrice } from "../utils";
+
 export const registerAction = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
@@ -60,11 +61,51 @@ export const CheckoutAction =
   async ({ request }) => {
     const formData = await request.formData();
     const { name, address } = Object.fromEntries(formData);
-
     const user = store.getState().userState.user;
     const { cartItems, orderTotal, numItemsInCart } =
       store.getState().cartState;
+    const myntraItems = cartItems.filter((item) => item.company === "Myntra");
+    const nonMyntraItems = cartItems.filter(
+      (item) => item.company !== "Myntra"
+    );
 
+    //  If the cart has only one Myntra item, place the order and redirect
+    if (cartItems.length === 1 && myntraItems.length === 1) {
+      store.dispatch(addFKProducts({ product: myntraItems[0] }));
+      store.dispatch(clearCart());
+      toast.success("Order placed successfully");
+      return redirect("/orders");
+    }
+    //handle multiple cart items which are only from 'Myntra'
+    if (myntraItems.length > 0 && nonMyntraItems.length === 0) {
+      myntraItems.forEach((item) =>
+        store.dispatch(addFKProducts({ product: item }))
+      );
+      store.dispatch(clearCart());
+      toast.success("Order placed successfully");
+      return redirect("/orders");
+    }
+    //handle multiple cart items which are both from 'Myntra' and non-Myntra
+    if (myntraItems.length > 0 && nonMyntraItems.length > 0) {
+      myntraItems.forEach((item) =>
+        store.dispatch(addFKProducts({ product: item }))
+      );
+      // store.dispatch(clearCart());
+      // toast.success("Order placed successfully");
+      // return redirect("/orders");
+    }
+
+    //handle multiple cart items which are only from 'Myntra'
+    // cartItems.map((item) => {
+    //   if (item.company === "Myntra") {
+    //     store.dispatch(addFKProducts({ product: item }));
+    //     store.dispatch(clearCart());
+    //     toast.success("order placed successfully");
+    //     return redirect("/orders");
+    //   }
+    // });
+
+    //handle multiple cart items which are not from 'Myntra'
     const items = cartItems.filter((item) => item.company !== "Myntra");
 
     const info = {

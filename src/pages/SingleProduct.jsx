@@ -45,20 +45,12 @@ export const SingleProduct = () => {
   let dollarAmount = "";
   const dispatch = useDispatch();
 
-  // if (company !== "Myntra") {
-  //   dollarAmount = formatFakeStorePrice(price);
-  // } else {
-  //   dollarAmount = new Intl.NumberFormat("en-US", {
-  //     style: "currency",
-  //     currency: "USD",
-  //   }).format(price);
-  // }
   if (company === "Myntra") {
     dollarAmount = formatFakeStorePrice(price);
   } else {
     dollarAmount = formatPrice(price);
   }
-  console.log(dollarAmount);
+
   const addtoCart = () => {
     dispatch(addItem({ product: cartProduct }));
   };
